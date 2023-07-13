@@ -1,2 +1,5 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<h1>Spotify Stats 🎧</h1>
+<p>
+	Don't want to wait until the end of the year to find out which artists and tracks you've been
+	listening to most often? You've come to the right place.
+</p>
