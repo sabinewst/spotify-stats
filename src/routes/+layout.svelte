@@ -1,11 +1,12 @@
 <script>
-	import Modal from '$lib/Modal.svelte';
+	import Modal from '$lib/components/Modal.svelte';
 	import Icon from '@iconify/svelte';
 
 	let showModal = false;
 </script>
 
 <header>
+	<h1>Spotify Stats 🎧</h1>
 	<button class="info" type="button" title="About this app" on:click={() => (showModal = true)}>
 		<Icon icon="mdi:information-slab-circle-outline" />
 	</button>
@@ -30,13 +31,17 @@
 
 <style>
 	:global(body) {
-		background-color: black;
+		background-color: rgb(17, 18, 21);
 		color: white;
+		font-family: 'Courier New', Courier, monospace;
 		margin: 0;
 	}
 
+	h1 {
+		text-align: center;
+	}
+
 	main {
-		font-family: 'Courier New', Courier, monospace;
 		text-align: center;
 	}
 
