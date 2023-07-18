@@ -33,9 +33,15 @@
 		background-color: greenyellow;
 		border-radius: 8px;
 		color: black;
-		font-size: 1.5em;
+		font-size: 1.3em;
 		margin: 24px;
 		padding: 4px 8px;
 		text-decoration: none;
+
+		@media (max-width: 600px) {
+			font-size: 1em;
+			font-weight: 600;
+			margin: 0;
+		}
 	}
 </style>
