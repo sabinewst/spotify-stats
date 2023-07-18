@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { PUBLIC_CLIENT_ID, PUBLIC_REDIRECT_URI } from '$env/static/public';
+	const clientId = '200e319bebd94e26872d976dbd250ad4';
+	const redirectUri = 'http://spotify-stats.vercel.app';
 
 	const generateRandomString = (length: number) => {
 		let text = '';
@@ -16,9 +17,9 @@
 	const url = new URL('https://accounts.spotify.com/authorize?');
 	const params = new URLSearchParams({
 		response_type: 'token',
-		client_id: PUBLIC_CLIENT_ID,
+		client_id: clientId,
 		scope,
-		redirect_uri: PUBLIC_REDIRECT_URI,
+		redirect_uri: redirectUri,
 		state
 	}).toString();
 

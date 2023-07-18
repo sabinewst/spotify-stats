@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { PUBLIC_REDIRECT_URI } from '$env/static/public';
 	import Login from '$lib/components/Login.svelte';
 	import Stats from '$lib/components/Stats.svelte';
 	import { token } from '$lib/stores/stores';
@@ -25,7 +24,7 @@
 			}
 
 			// reset url in browser window
-			window.history.pushState({}, '', PUBLIC_REDIRECT_URI);
+			window.history.pushState({}, '', 'http://spotify-stats.vercel.app');
 		}
 	});
 </script>
