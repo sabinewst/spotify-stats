@@ -4,6 +4,8 @@
 	import { token } from '$lib/stores/stores';
 	import { onMount } from 'svelte';
 
+	export let data;
+
 	const getDataFromUrl = () => {
 		return window.location.hash
 			.substring(1)
@@ -18,13 +20,13 @@
 
 	onMount(() => {
 		if (!$token) {
-			const data = getDataFromUrl();
-			if (data.access_token) {
-				token.set(data.access_token);
+			const spotifyData = getDataFromUrl();
+			if (spotifyData.access_token) {
+				token.set(spotifyData.access_token);
 			}
 
 			// reset url in browser window
-			window.history.pushState({}, '', 'http://spotify-stats.vercel.app');
+			window.history.pushState({}, '', data.redirectUri);
 		}
 	});
 </script>
@@ -35,7 +37,7 @@
 		listening to the most? You've come to the right place.
 	</p>
 
-	<Login />
+	<Login clientId={data.clientId} redirectUri={data.redirectUri} />
 {:else}
 	<Stats />
 {/if}

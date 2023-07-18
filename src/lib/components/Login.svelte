@@ -1,6 +1,6 @@
 <script lang="ts">
-	const clientId = '200e319bebd94e26872d976dbd250ad4';
-	const redirectUri = 'http://spotify-stats.vercel.app';
+	export let clientId;
+	export let redirectUri;
 
 	const generateRandomString = (length: number) => {
 		let text = '';
