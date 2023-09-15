@@ -19,6 +19,8 @@
 				username = data.display_name;
 			} else {
 				console.log(res);
+				$token = '';
+				localStorage.removeItem('access_token');
 			}
 		}
 	}

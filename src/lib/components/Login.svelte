@@ -1,6 +1,8 @@
 <script lang="ts">
-	export let clientId;
-	export let redirectUri;
+	import { onMount } from 'svelte';
+
+	export let clientId: string;
+	export let redirectUri: string;
 
 	const generateRandomString = (length: number) => {
 		let text = '';
@@ -12,18 +14,44 @@
 		return text;
 	};
 
-	const state = generateRandomString(16);
-	const scope = 'user-read-private user-read-email user-top-read';
-	const url = new URL('https://accounts.spotify.com/authorize?');
-	const params = new URLSearchParams({
-		response_type: 'token',
-		client_id: clientId,
-		scope,
-		redirect_uri: redirectUri,
-		state
-	}).toString();
+	function base64encode(digest: ArrayBuffer) {
+		const uint8Array = new Uint8Array(digest);
+		const byteArray = Array.from(uint8Array);
+		return btoa(String.fromCharCode.apply(null, byteArray))
+			.replace(/\+/g, '-')
+			.replace(/\//g, '_')
+			.replace(/=+$/, '');
+	}
 
-	const loginLink = url + params;
+	async function generateCodeChallenge(codeVerifier: string) {
+		const encoder = new TextEncoder();
+		const data = encoder.encode(codeVerifier);
+		const digest = await window.crypto.subtle.digest('SHA-256', data);
+		return base64encode(digest);
+	}
+
+	let loginLink: string;
+	const codeVerifier = generateRandomString(128);
+
+	onMount(() => {
+		generateCodeChallenge(codeVerifier).then((codeChallenge) => {
+			let state = generateRandomString(16);
+			const scope = 'user-read-private user-read-email user-top-read';
+			localStorage.setItem('code_verifier', codeVerifier);
+
+			let args = new URLSearchParams({
+				response_type: 'code',
+				client_id: clientId,
+				scope: scope,
+				redirect_uri: redirectUri,
+				state: state,
+				code_challenge_method: 'S256',
+				code_challenge: codeChallenge
+			}).toString();
+
+			loginLink = 'https://accounts.spotify.com/authorize?' + args;
+		});
+	});
 </script>
 
 <a href={loginLink} class="connect">Connect to Spotify</a>
