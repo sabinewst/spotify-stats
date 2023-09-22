@@ -5,6 +5,7 @@
 	import { onMount } from 'svelte';
 
 	export let data;
+	let loading = true;
 
 	const getCodeAndRequestToken = () => {
 		const urlParams = new URLSearchParams(window.location.search);
@@ -51,17 +52,21 @@
 			// reset url in browser window
 			window.history.pushState({}, '', data.redirectUri);
 		}
+		loading = false;
 	});
 </script>
 
-{#if !$token}
+{#if loading}
+	<p>Loading...</p>
+{/if}
+{#if !loading && !$token}
 	<p>
 		Don't want to wait until the end of the year to find out which artists and tracks you've been
 		listening to the most? You've come to the right place.
 	</p>
-
 	<Login clientId={data.clientId} redirectUri={data.redirectUri} />
-{:else}
+{/if}
+{#if !loading && $token}
 	<Stats />
 {/if}
 
