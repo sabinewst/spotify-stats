@@ -25,7 +25,11 @@
 				};
 			});
 		} else {
-			return items.map((item: any) => {
+			const seedTracks: string[] = [];
+			const itemArray = items.map((item: any, index: number) => {
+				if (index < 5) {
+					seedTracks.push(item.id);
+				}
 				return {
 					name: item.name,
 					image: item.album.images[0].url,
@@ -33,6 +37,8 @@
 					url: item.external_urls.spotify
 				};
 			});
+			localStorage.setItem('seedTracks', seedTracks.join());
+			return itemArray;
 		}
 	};
 
@@ -57,6 +63,7 @@
 					topPlayed = transformData(data.items);
 				}, 500);
 			} else {
+				$token = '';
 				console.log(res);
 			}
 		}
@@ -66,7 +73,6 @@
 </script>
 
 <h2>Your top {category}</h2>
-
 {#if topPlayed.length}
 	<ol>
 		{#each topPlayed as item, i}
@@ -88,23 +94,6 @@
 <style>
 	h2 {
 		color: greenyellow;
-	}
-
-	li {
-		list-style-type: none;
-		margin-bottom: 48px;
-	}
-
-	ol {
-		padding: 0;
-	}
-
-	img {
-		max-width: 200px;
-	}
-
-	.loader {
-		display: flex;
-		justify-content: center;
+		font-size: 2em;
 	}
 </style>

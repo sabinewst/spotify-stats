@@ -61,8 +61,9 @@
 {/if}
 {#if !loading && !$token}
 	<p>
-		Don't want to wait until the end of the year to find out which artists and tracks you've been
-		listening to the most? You've come to the right place.
+		Don't want to wait until the end of the year to find out which tracks and artists you've been
+		listening to the most? And do you want to get some personalized recommendations? You've come to
+		the right place.
 	</p>
 	<Login clientId={data.clientId} redirectUri={data.redirectUri} />
 {/if}
