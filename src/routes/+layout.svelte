@@ -18,7 +18,8 @@
 			Spotify Stats was built with <a href="https://kit.svelte.dev/" target="_blank">SvelteKit</a
 			>.<br />
 			It uses Spotify's Web API to access your Spotify user data, giving you insight into your top played
-			tracks and artists. Your personal data will neither be stored nor utilized for any other purposes.
+			tracks and artists, plus giving you recommendations based on your top tracks. Your personal data
+			will neither be stored nor utilized for any other purposes.
 		</p>
 	</Modal>
 </header>
@@ -35,6 +36,24 @@
 		color: white;
 		font-family: 'Courier New', Courier, monospace;
 		margin: 0;
+	}
+
+	:global(li) {
+		list-style-type: none;
+		margin-bottom: 48px;
+	}
+
+	:global(ol) {
+		padding: 0;
+	}
+
+	:global(img) {
+		max-width: 200px;
+	}
+
+	:global(.loader) {
+		display: flex;
+		justify-content: center;
 	}
 
 	h1 {

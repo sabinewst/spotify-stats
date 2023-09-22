@@ -31,6 +31,12 @@
 {#if username}
 	<h2>Hello {username}!</h2>
 {/if}
+<p>
+	Here's an overview of your 10 most played tracks and artists during the period of time you've
+	selected. Do you want to discover similar tracks? <a href="/recommendations"
+		>Check out your personal recommendations.</a
+	>
+</p>
 
 <fieldset>
 	<legend>Select a period of time</legend>
@@ -51,20 +57,20 @@
 </fieldset>
 
 {#key period}
-	<TopPlayed category="artists" {period} />
-	<hr />
 	<TopPlayed category="tracks" {period} />
+	<hr />
+	<TopPlayed category="artists" {period} />
 {/key}
 
 <style>
-	h2 {
+	h2,
+	a {
 		color: greenyellow;
 	}
 
 	hr {
 		margin-bottom: 50px;
-		max-width: 60%;
-		opacity: 0.3;
+		max-width: 70%;
 	}
 
 	fieldset {
@@ -77,5 +83,9 @@
 
 	label {
 		cursor: pointer;
+	}
+
+	p {
+		margin-bottom: 64px;
 	}
 </style>
