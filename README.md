@@ -22,14 +22,12 @@ git clone https://github.com/sabinewst/spotify-stats.git
 
 ```
 cd spotify-stats
-
 ```
 
 3. Install the project dependencies:
 
 ```
 npm install
-
 ```
 
 4. Create a Spotify Developer Application on the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/).
@@ -37,18 +35,14 @@ npm install
 5. Configure your environment variables by creating a `.env` file in the project root directory. Add your Spotify client ID and the redirect URI (most likely `http://localhost:5173`).
 
 ```
-
 CLIENT_ID=""
 REDIRECT_URI=""
-
 ```
 
 6. Start the development server:
 
 ```
-
 npm run dev
-
 ```
 
 7. Open your web browser and visit `http://localhost:5173` to see the app in action.
